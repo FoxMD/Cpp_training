@@ -1,5 +1,4 @@
 #include "iostream"
-#
 
 int Add(int* a, int* b);
 void AddVal(int* a, int* b, int* result);
