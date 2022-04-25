@@ -19,4 +19,10 @@ int main()
     delete q;
     q = nullptr;
     // new can call Constructor
+    // new can be customized with overloads
+    // malloc/calloc returb NULL on failure, new throws exception
+
+    // Arrays
+    char *c = new char[10];
+    delete []c; 
 }
