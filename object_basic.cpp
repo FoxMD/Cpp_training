@@ -5,15 +5,11 @@ class Integer{
     public:
         Integer();
         Integer(int value);
+        Integer(const Integer &obj);    // Good practise for passing objects is const
         ~Integer();
         int GetValue()const;
         void SetValue(int value);
 };
-
-int Add(int x, int y)
-{
-
-}
 
 int main()
 {
@@ -35,6 +31,10 @@ Integer::Integer()
     m_pInt = new int(0);
 }
 
+Integer::Integer(const Integer &obj)    // Use rule of 3
+{
+    m_pInt = new int(*obj.m_pInt);
+}
 
 Integer::Integer(int value)
 {
