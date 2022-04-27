@@ -24,5 +24,6 @@ int main()
     Print(x);   // Constant reference
     Print(3);   // Constant values bind to R-Value
 
+    // Used for move semantics -> obj 1 -> obj 2 shallow copy -> obj 1 set to null 
     return 0;
 }
