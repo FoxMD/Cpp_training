@@ -14,10 +14,10 @@ class Integer{
 
 int main()
 {
-    Integer i1;
+    Integer i1{}; // Call default constructor
     Integer i2(3);
 
     i1.SetValue(33);
-    i1.SetValue(3.3f); // Wont Compile because of delete... otherwise you would get only a warning
+    //i1.SetValue(3.3f); // Wont Compile because of delete... otherwise you would get only a warning
     return 0;
 }
