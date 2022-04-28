@@ -18,6 +18,7 @@ int main()
     Integer a(1);
     auto b{std::move(a)};    // auto b{static_cast<Integer&&>(a)}; the same bu without std
     // required that the object destroys but state will be preserved
+    a.SetValue(10); // reinitialization of the object, without reinit dont read from it
     return 0;
 }
 
