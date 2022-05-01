@@ -37,7 +37,6 @@ Integer::~Integer() {
 Integer & Integer::operator++() {
 	++(*m_pInt);
 	return *this;
-	// TODO: insert return statement here
 }
 
 Integer  Integer::operator++(int) {
