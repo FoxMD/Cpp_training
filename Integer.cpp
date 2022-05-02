@@ -73,7 +73,7 @@ Integer Integer::operator+(const Integer & a) const {
 	return temp;
 }
 
-void Integer::operator()() {
+void Integer::operator()() {	// can taky any number of objects, will be called as a(); 
 	std::cout << *m_pInt << std::endl; 
 }
 //	but Integer sum = 5 + a; must be global 
