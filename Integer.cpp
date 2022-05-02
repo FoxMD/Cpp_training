@@ -48,26 +48,25 @@ Integer  Integer::operator++(int) {
 bool Integer::operator==(const Integer & a) const {
 	return *m_pInt == *a.m_pInt;
 }
+// rule of 5 - implement move constructor, copy constructor destructors and etc
+Integer & Integer::operator=(const Integer & a) {	// needs to be implemented because if its not, we will make a shallow copy
+	if (this != &a) {								// in case a = a -> we would delete a reference pointer of object -> undefined object
+		delete m_pInt;								// delete the reference due to memory bleed
+		m_pInt = new int(*a.m_pInt);				// make new object
+	}
+	return *this;									// return by reference
+}
 
-Integer & Integer::operator=(const Integer & a) {
-	if (this != &a) {
-		delete m_pInt;
-		m_pInt = new int(*a.m_pInt);
+Integer & Integer::operator=(Integer && a) {	// by reference, move constructor 
+	if (this != &a) {	
+		delete m_pInt;	
+		m_pInt = a.m_pInt;						// assign pointer
+		a.m_pInt = nullptr;						// delete pointer
 	}
 	return *this;
 }
 
-Integer & Integer::operator=(Integer && a) {
-	if (this != &a) {
-		delete m_pInt;
-		m_pInt = a.m_pInt;
-		a.m_pInt = nullptr;
-	}
-	return *this;
-}
-
-
-
+//	Integer sum = a + 5; works because of a.operator+(5) it will be invoked on left hand
 Integer Integer::operator+(const Integer & a) const {
 	Integer temp;
 	*temp.m_pInt = *m_pInt + *a.m_pInt;
@@ -77,7 +76,7 @@ Integer Integer::operator+(const Integer & a) const {
 void Integer::operator()() {
 	std::cout << *m_pInt << std::endl; 
 }
-
+//	but Integer sum = 5 + a; must be global 
 Integer operator +(int x, const Integer &y) {
 	Integer temp;
 	temp.SetValue(x + y.GetValue());
