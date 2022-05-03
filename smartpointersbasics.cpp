@@ -47,6 +47,13 @@ void CreateInteger()
 
 int main()
 {  
+    // casting
+    int a = 5; 
+    float f = a; // basic to basic cast float f = (float)a; automatic but int/int = int so it is neccesary to make cast manualy
+    // cast (int) makes no check if cast is possible, in C++ always use static cast
+    float q = static_cast<float>(a); // for example char *c = (char*)&a; is in C possible but wrong char *c = static_cast<char *>&a; would not work
+    // if you know what you are doing: use reinterpret_cast<type>() it is like c cast but doesnt discard qualifier
+    // for constant cast use constant_cast<type>(); 
     CreateInteger();
     return 0;
 }
