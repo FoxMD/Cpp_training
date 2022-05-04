@@ -92,3 +92,7 @@ std::istream & operator >> (std::istream &input, Integer &a) {
 	a.SetValue(x);
 	return input;
 }
+Integer::operator int()
+{
+	return *m_pInt;
+}

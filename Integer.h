@@ -25,6 +25,7 @@ public:
 	Integer operator +(const Integer & a)const;
 
 	void operator ()();
+	explicit operator int();
 
 	friend std::ostream & operator <<(std::ostream & out, const Integer &a);	// friend so this class has access to private members
 	friend std::istream & operator >> (std::istream &input, Integer &a);		// friend so this class has access to private members
