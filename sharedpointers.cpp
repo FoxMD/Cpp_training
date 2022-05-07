@@ -45,5 +45,9 @@ int main()
     e1->SetProject(prj);
     e2->SetProject(prj);
 
+    std::cout << prj.use_count() << std::endl; // used only for debugging to check reference counter
+
+    prj->ShoProjectDetails();
+
     return 0;
 }
