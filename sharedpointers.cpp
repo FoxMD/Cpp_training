@@ -17,16 +17,33 @@ class Project
 
 class Employee
 {
-    Project *m_pProject{};
+    std::shared_ptr<Project> m_pProject{};
     public:
-        void SetProject(Project *prj)
+        void SetProject(std::shared_ptr<Project> &prj)
         {
             m_pProject = prj;
         }
-        const Project* GetProject()const 
+        const std::shared_ptr<Project> &GetProject()const 
         {
             return m_pProject;
         }
 };
 
-void ShowInfo(const std::unique_ptr<Employee>)
+void ShowInfo(const std::unique_ptr<Employee> &emp)
+{
+    std::cout << "Employee: ";
+    emp->GetProject()->ShoProjectDetails();
+}
+
+int main()
+{
+    std::shared_ptr<Project> prj {new Project{}};
+    prj->SetName("First");
+    std::shared_ptr<Employee> e1 {new Employee{}};
+    std::shared_ptr<Employee> e2 {new Employee{}};
+
+    e1->SetProject(prj);
+    e2->SetProject(prj);
+
+    return 0;
+}
