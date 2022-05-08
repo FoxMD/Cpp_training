@@ -1,5 +1,6 @@
 #include <iostream>
-// destructers will not be called - circular reference
+// weak pointer usage
+// it doesnt matter in which class
 class Employee;
 class Project
 {
@@ -12,7 +13,7 @@ class Project
 class Employee
 {
     public:
-        std::shared_ptr<Project> m_prj;
+        std::weak_ptr<Project> m_prj;
         Employee(){ std::cout << "Employee()" << std::endl;}
         ~Employee(){ std::cout << "~Employee()" << std::endl;}
 };
