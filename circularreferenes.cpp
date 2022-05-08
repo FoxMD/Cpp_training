@@ -1,10 +1,10 @@
 #include <iostream>
-
+// destructers will not be called - circular reference
 class Employee;
 class Project
 {
     public:
-        Employee *m_emp;
+        std::shared_ptr<Employee> m_emp;
         Project() { std::cout << "Project()" << std::endl;}
         ~Project() { std::cout << "~Project()" << std::endl;}
 };
@@ -12,20 +12,18 @@ class Project
 class Employee
 {
     public:
-        Project *m_prj;
+        std::shared_ptr<Project> m_prj;
         Employee(){ std::cout << "Employee()" << std::endl;}
         ~Employee(){ std::cout << "~Employee()" << std::endl;}
 };
 
 int main()
 {
-    Employee *emp = new Employee{};
-    Project *prj = new Project{};
+    std::shared_ptr<Employee> emp{new Employee{}};
+    std::shared_ptr<Project> prj{new Project{}};
 
     emp->m_prj = prj;
     prj->m_emp = emp;
 
-    delete emp;
-    delete prj;
     return 0;
 }
