@@ -15,6 +15,12 @@ class Bag
                 Add(*it);
                 it++;
             } 
+            /*
+            for(auto x : values)
+            {
+                
+            }
+            */
         }
         void Add(int value)
         {
