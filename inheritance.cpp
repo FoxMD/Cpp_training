@@ -7,6 +7,7 @@ class Animal
         void Speak() {}
 };
 
+// access modifiers ... public, private, protected
 class Dog : public Animal
 {
 
@@ -14,6 +15,6 @@ class Dog : public Animal
 
 int main()
 {
-
+    
     return 0;
 }
