@@ -11,7 +11,7 @@ Checking::~Checking() {
 
 void Checking::Withdraw(float amount) {
 	if ((m_Balance - amount) > m_MinimumBalance) {
-		Account::Withdraw(amount);
+		Account::Withdraw(amount);	// Scope is important !!! Else it is a recursion
 	}
 	else {
 		std::cout << "Invalid amount" << std::endl; 
