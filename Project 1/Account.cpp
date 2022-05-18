@@ -9,7 +9,7 @@ m_Name(name), m_Balance(balance){
 
 
 Account::~Account() {
-	//std::cout << "~Account()" << std::endl;
+	std::cout << "~Account()" << std::endl;
 
 }
 
