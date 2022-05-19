@@ -13,7 +13,7 @@ public:
 	float GetBalance()const;
 	int GetAccountNo()const;
 
-	virtual void AccumulateInterest();
+	virtual void AccumulateInterest();	// virtual to overwrite them in child class -> polymorphysm
 	virtual void Withdraw(float amount);
 	void Deposit(float amount);
 	virtual float GetInterestRate()const;
