@@ -11,7 +11,7 @@ int main()
 
 	const std::type_info &ti = typeid(Checking);
 	std::cout << ti.name() << std::endl; 
-    
+    if(ti == typeid(Savings)){}
 	
 	return 0;
 }
