@@ -23,6 +23,7 @@ int main()
     {
 
     }
+    // in case of reference error it throws exception
     
 	
 	return 0;
