@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 void ProcessRecors(int count)
 {
@@ -24,7 +25,10 @@ int main()
     {
         std::cout << ex.what() << '\n';
     }
-    
+    catch(std::bad_alloc &ex)
+    {
+        std::cout << ex.what() << '\n';
+    }
     
     return 0; 
 }
