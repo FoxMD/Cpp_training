@@ -32,8 +32,14 @@ class Test
         { 
             std::cout << "Destructor Test" << std::endl; 
             // delete pA;  smart pointer doesnt need it
+            // dont throw exceptions in destructors !!!
         }
 };
+
+int Sum(int x, int y) noexcept(true)  // this function wont throw an exception, if you write false it can throw exception
+{   // if we know some fcn called can thro we can write noexcept(noexcept(fcn(x))) move operators schould have noexcept
+    return y + x;
+}
 
 int main()
 {
