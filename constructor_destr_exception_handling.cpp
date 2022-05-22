@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 class TestA
 {
@@ -16,19 +17,21 @@ class TestB
 
 class Test
 {
-    TestA *pA{};
+    // TestA *pA{}; // because of throw will prohibit call to destructor
+    std::unique_ptr<TestA> pA{};
     TestB b{};
     public:
         Test() 
         { 
             std::cout << "Constructor Test" << std::endl;
-            pA = new TestA;
+            // pA = new TestA;  dont need for RIAA
+            pA.reset(new TestA);
             throw std::runtime_error("Error");  
         }
         ~Test() 
         { 
             std::cout << "Destructor Test" << std::endl; 
-            delete pA;     
+            // delete pA;  smart pointer doesnt need it
         }
 };
 
