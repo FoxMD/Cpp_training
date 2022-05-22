@@ -16,6 +16,15 @@ void ProcessRecors(int count)
 
 int main()
 {
-    ProcessRecors(std::numeric_limits<int>::max());
+    try
+    {
+        ProcessRecors(std::numeric_limits<int>::max());
+    }
+    catch(std::runtime_error &ex)
+    {
+        std::cout << ex.what() << '\n';
+    }
+    
+    
     return 0; 
 }
