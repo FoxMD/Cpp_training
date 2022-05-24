@@ -1,5 +1,21 @@
 #include <iostream>
 #include <string>
+#include <fstream>
+
+void Write()
+{
+    std::ofstream out{"data.txt"};
+    out << "Hello world" << std::endl;
+    out.close();
+}
+
+void Read()
+{
+    std::ifstream in{"data.txt"};
+    std::string message;
+    std::getline(in, message);
+    in.close();
+}
 
 int main()
 {
