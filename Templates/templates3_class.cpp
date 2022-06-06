@@ -6,13 +6,18 @@ class Stack
     T m_Buffer[size];
     int m_Top{-1};
     public:
+        Stack() = default;
+        Stack(const Stack &obj) // copy constructor
+        {
+            m_Top = obj.m_Top;
+            for(int i = 0; i <= m_Top; ++i)
+            {
+                m_Buffer[i] = obj.m_Buffer[i];
+            }
+        }
         void Push(const T &elem)
         {
             m_Buffer[++m_Top] = elem;
-        }
-        void Pop()
-        {
-            --m_Top;
         }
         const T& Top()const
         {
@@ -22,7 +27,19 @@ class Stack
         {
             return m_Top == -1;
         }
+        static Stack Create()
+        {
+            return Stack<T, size>();
+        }
+
+        void Pop();
 };
+
+template<typename T, int size>
+void Stack<T, size>::Pop()
+{
+    --m_Top;
+}
 
 int main()
 {
