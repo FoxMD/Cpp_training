@@ -20,6 +20,11 @@ void Print(T a, Params... args)
 {
     // you need to use recursion, to grab your parameters
     // base case function
+    std::cout << a;
+    if(sizeof...(args) != 0)
+    {
+        std::cout << ", ";
+    } 
     Print(args...);
 }
 
