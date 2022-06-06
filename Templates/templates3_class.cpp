@@ -1,9 +1,9 @@
 #include <iostream>
 
-template<typename T>
+template<typename T, int size>
 class Stack
 {
-    T m_Buffer[512];
+    T m_Buffer[size];
     int m_Top{-1};
     public:
         void Push(const T &elem)
@@ -26,7 +26,7 @@ class Stack
 
 int main()
 {
-    Stack<int> s;
+    Stack<int, 512> s;
     s.Push(3);
     s.Push(6);
     s.Push(9);
