@@ -16,7 +16,8 @@ void Print()
 }
 
 template<typename T, typename...Params> // variadic template, template parameter pack
-void Print(const T &a, const Params&... args)
+// void Print(const T &a, const Params&... args) but for perfect forwarding
+void Print(T &&a, Params&&... args)
 {
     // you need to use recursion, to grab your parameters
     // base case function
@@ -25,7 +26,7 @@ void Print(const T &a, const Params&... args)
     {
         std::cout << ", ";
     } 
-    Print(args...);
+    Print(std::forward<Params>(args)...);
 }
 
 int main()
