@@ -24,7 +24,7 @@ void Sort(T(&arr)[size], Comparator comp)
     {
         for(int j = 0; j < size -1; ++j)
         {
-            if(comp(arr[j] > arr[j + 1])
+            if(comp(arr[j] > arr[j + 1]))
             {
                 T temp = std::move(arr[j]);
                 arr[j] = std::move(arr[j + 1]);
