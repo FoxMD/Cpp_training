@@ -16,7 +16,7 @@
 //        }
 //   }
 //}
-using Comparator = bool(*)(int, int);
+using Comparator = bool(*)(int, int);   // fnc pointers cannot be optimized
 template<typename T, int size>
 void Sort(T(&arr)[size], Comparator comp)
 {
@@ -24,7 +24,7 @@ void Sort(T(&arr)[size], Comparator comp)
     {
         for(int j = 0; j < size -1; ++j)
         {
-            if(comp(arr[j] > arr[j + 1]))
+            if(comp(arr[j], arr[j + 1]))
             {
                 T temp = std::move(arr[j]);
                 arr[j] = std::move(arr[j + 1]);
@@ -46,7 +46,7 @@ int main()
     {
         std::cout << x << ", ";
     }
-    Sort(arr);
+    Sort(arr, Comp);
     for(auto x: arr)
     {
         std::cout << x << ", ";
