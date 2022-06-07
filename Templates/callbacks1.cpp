@@ -16,15 +16,15 @@
 //        }
 //   }
 //}
-
+using Comparator = bool(*)(int, int);
 template<typename T, int size>
-void Sort(T(&arr)[size])
+void Sort(T(&arr)[size], Comparator comp)
 {
     for(int i = 0; i < size -1; ++i)
     {
         for(int j = 0; j < size -1; ++j)
         {
-            if(arr[j] > arr[j + 1])
+            if(comp(arr[j] > arr[j + 1])
             {
                 T temp = std::move(arr[j]);
                 arr[j] = std::move(arr[j + 1]);
@@ -34,6 +34,10 @@ void Sort(T(&arr)[size])
     }
 }
 
+bool Comp(int x, int y)
+{
+    return x > y;
+}
 
 int main()
 {
