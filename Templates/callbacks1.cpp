@@ -39,6 +39,13 @@ bool Comp(int x, int y)
     return x > y;
 }
 
+bool Comp1(int x, int y)
+{
+    return x < y;
+}
+
+
+
 int main()
 {
     int arr[]{1,4,9,8,0,3};
