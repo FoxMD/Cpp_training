@@ -59,7 +59,7 @@ int main()
     {
         std::cout << x << ", ";
     }
-    Sort(arr, Comp);
+    Sort(arr, comp);
     for(auto x: arr)
     {
         std::cout << x << ", ";
