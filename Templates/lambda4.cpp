@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 template<typename T, int size, typename Comparator>
 void Sort(T(&arr)[size], Comparator comp)
@@ -78,22 +79,36 @@ int main()
     ForEach(arr, [](auto x) { std::cout << x << std::endl;});
     
     int offset = 4;
-    ForEach(arr, [offset](auto &x) { x += offset;});    // capture list [] contains some local variable, but it cannot be modified
+    ForEach(arr, [offset](auto &x) { x += offset;}); // capture list [] contains some local variable, but it cannot be modified
     
     // to access and modify the value in capture list we need to use mutable
     ForEach(arr, [offset](auto &x) mutable { x += offset; ++offset;});
     
     int sum{};
-    ForEach(arr, [&sum](auto &x) { sum += x;}); // & captured by reference, = capture by value
+    ForEach(arr, [&sum](auto &x) { sum += x;});      // & captured by reference, = capture by value
 
     // example:
-    ForEach(arr, [=, &sum](auto &x) { sum += x;}); // all but sum will be captured by value
-    ForEach(arr, [&, sum](auto &x) { sum += x;}); // all but sum will be captured by reference
+    ForEach(arr, [=, &sum](auto &x) { sum += x;});   // all but sum will be captured by value
+    ForEach(arr, [&, sum](auto &x) { sum += x;});    // all but sum will be captured by reference
 
     // example for class:
     Product p{"Watch", 499.99f};
     p.AssignFinalPrice();
     std::cout << p.GetPrice() << std::endl;
     
+    // if a lambda is not used with a class it can decompose to a function pointer, used with C functions
+    atexit([](){std::cout << "My C++ function" << std::endl;}); // capture list needs to be empty !!!
+
+    // C++14 Generalized lambda capture
+    ForEach(arr, [&, newSum = sum](auto &x) { sum += x;});
+
+    // example of use, C++14+
+    std::ofstream out{"file.txt"};
+    auto write = [out = std::move(out)](int x) mutable {
+        out << x;
+    };
+
+    write(200);
+
     return 0;
 }
