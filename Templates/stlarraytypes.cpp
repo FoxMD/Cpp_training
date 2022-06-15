@@ -26,5 +26,15 @@ int main()
     {
         coll.push_back(i * 10);
     }
+    coll.size();
+    auto itr1 = coll.begin();
+    while(itr1 != coll.end())
+    {
+        std::cout << *itr1++ << std::endl;
+    }
+    coll.insert(coll.begin(), 45);
+    coll.erase(coll.begin());
+
+    // deque - 
     return 0;
 }
