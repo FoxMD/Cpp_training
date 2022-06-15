@@ -2,6 +2,8 @@
 #include <array>
 #include <vector>
 #include <deque>
+#include <list>
+#include <forward_list>
 
 // Quicker and reliabler than own implementation
 int main()
@@ -51,6 +53,24 @@ int main()
     deq.pop_back();
     deq.pop_front();
 
-    // list, forward_list - 
+    // list, forward_list - 2way linked list/1way, insertion/deletion friendly
+    std::list<int> lst;
+    for(int i = 0; i < 5; ++i)
+    {
+        lst.push_back(i * 10);  // forward has push_front
+    }
+    auto itr2 = lst.begin();
+    lst.insert(itr2, 12);
+    lst.erase(itr2);
+
+    std::forward_list<int> flst;
+    for(int i = 0; i < 5; ++i)
+    {
+        flst.push_front(i * 10); 
+    }
+    auto itr3 = flst.begin();
+    flst.insert_after(itr3, 12);
+    flst.erase_after(itr3);
+    
     return 0;
 }
