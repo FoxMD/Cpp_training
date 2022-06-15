@@ -1,6 +1,7 @@
 #include <iostream>
 #include <array>
 #include <vector>
+#include <deque>
 
 // Quicker and reliabler than own implementation
 int main()
@@ -35,6 +36,21 @@ int main()
     coll.insert(coll.begin(), 45);
     coll.erase(coll.begin());
 
-    // deque - 
+    // deque - double ended que, grows automaticaly
+    std::deque<int> deq{1,2,3,4};
+    for(int i = 0; i < 5; ++i)
+    {
+        deq.push_back(i * 10);
+    }
+        for(int i = 0; i < 5; ++i)
+    {
+        deq.push_front(i * 10);
+    }
+    deq.insert(deq.begin(), 45);
+    deq.erase(deq.begin());
+    deq.pop_back();
+    deq.pop_front();
+
+    // list, forward_list - 
     return 0;
 }
