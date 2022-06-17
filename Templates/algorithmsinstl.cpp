@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_set>
+#include <set>
 #include <string>
 #include <algorithm>
 
@@ -79,6 +80,28 @@ void UserDefinedVector()
     });
 
     for(const auto &e : v)
+    {
+        std::cout << "ID: " << e.GetId() << " name: " << e.GetName() << " programming: " << e.GetProgLang() << std::endl;
+    }
+}
+
+struct EmpCompare
+{
+    bool operator()(const Employee &e1, const Employee &e2) const
+    {
+        return e1.GetId() < e2.GetId();
+    }
+};
+
+void UserDefinedSet()
+{
+    std::set<Employee, EmpCompare> s{
+        Employee{"Tina", 101, "C++"},
+        Employee{"Max", 202, "Java"},
+        Employee{"Tatra", 200, "Rust"}
+    };
+
+    for(const auto &e : s)
     {
         std::cout << "ID: " << e.GetId() << " name: " << e.GetName() << " programming: " << e.GetProgLang() << std::endl;
     }
