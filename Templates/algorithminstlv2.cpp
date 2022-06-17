@@ -155,3 +155,19 @@ int main()
     UserDefinedVector();
     return 0;
 }
+
+/* Changes from 11+:
+    - containers use noexcept specifiers (on iterators)
+    - containers have brace initializer
+        - std::vector<int> myVec{1,2,3,4,5}
+    - they preffer std::move before copy
+    - emplace/emplace_back were added
+        - emplace makes a construction of object
+        - push placec an existing object
+        - example:
+            - std::vector<std::pair><int, std::string>> data;
+            - data.push_back(std::pair<int, std::string>{100, "C++"});
+            - data.emplace_back(100, "C++");
+    - for use of move operation on our classes we need to specify noexcept on move operations(move constructor and operator)
+
+*/
