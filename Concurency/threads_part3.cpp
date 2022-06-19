@@ -2,9 +2,11 @@
 #include <list>
 #include <string>
 #include <thread>
+#include <mutex>
 
 std::list<int> g_Data;
 const size_t SIZE{5000000};
+std::mutex g_Mutex;
 
 class String
 {
@@ -22,8 +24,10 @@ void Download(String &arg)
 {
     std::cout << R"MSG([Downloader] Started download: )MSG" << std::endl;
     for(int i = 0; i < SIZE; ++i) {
+        g_Mutex.lock();
         g_Data.push_back(i);
     }
+    g_Mutex.unlock();
     std::cout << R"MSG([Downloader] Finished download)MSG" << std::endl;
 }
 
@@ -31,8 +35,10 @@ void Download2(String &arg)
 {
     std::cout << R"MSG([Downloader 2] Started download: )MSG" << std::endl;
     for(int i = 0; i < SIZE; ++i) {
+        g_Mutex.lock();
         g_Data.push_back(i);
     }
+    g_Mutex.unlock();
     std::cout << R"MSG([Downloader 2] Finished download)MSG" << std::endl;
 }
 
