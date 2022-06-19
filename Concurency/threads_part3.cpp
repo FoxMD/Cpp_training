@@ -24,10 +24,11 @@ void Download(String &arg)
 {
     std::cout << R"MSG([Downloader] Started download: )MSG" << std::endl;
     for(int i = 0; i < SIZE; ++i) {
-        g_Mutex.lock();
+        std::lock_guard<std::mutex> mtx(g_Mutex);   // RAII 
+        //g_Mutex.lock();
         g_Data.push_back(i);
     }
-    g_Mutex.unlock();
+    //g_Mutex.unlock();
     std::cout << R"MSG([Downloader] Finished download)MSG" << std::endl;
 }
 
@@ -35,10 +36,12 @@ void Download2(String &arg)
 {
     std::cout << R"MSG([Downloader 2] Started download: )MSG" << std::endl;
     for(int i = 0; i < SIZE; ++i) {
-        g_Mutex.lock();
+        std::lock_guard<std::mutex> mtx(g_Mutex);   // RAII 
+        //g_Mutex.lock();
+        if( i > 500) return; // deadlock -> resource will be never unlocked
         g_Data.push_back(i);
     }
-    g_Mutex.unlock();
+    //g_Mutex.unlock();
     std::cout << R"MSG([Downloader 2] Finished download)MSG" << std::endl;
 }
 
