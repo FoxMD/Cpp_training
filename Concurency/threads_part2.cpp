@@ -6,9 +6,21 @@
 std::list<int> g_Data;
 const size_t SIZE{5000000};
 
-void Download(std::string arg)
+class String
 {
-    std::cout << R"MSG([Downloader] Started download: )MSG" << arg << std::endl;
+    public:
+        String() {std::cout << "String()" << "\n";} // default
+        String(const String &) {std::cout << "String(const String&)" << "\n";} // copy 
+        ~String() {std::cout << "~String()" << "\n";} // destructor
+        String & operator=(const String&) { // assignment operator
+            std::cout << "Operator =(const String&)" << std::endl;
+            return *this;
+        }
+};
+
+void Download(String &arg)
+{
+    std::cout << R"MSG([Downloader] Started download: )MSG" << std::endl;
     for(int i = 0; i < SIZE; ++i) {
         g_Data.push_back(i);
     }
@@ -17,10 +29,10 @@ void Download(std::string arg)
 
 int main()
 {
-    std::string name{"MyFileName.txt"};
+    String name;
     std::cout << R"MSG([Main] User started download)MSG" << std::endl;
-    std::thread thDownaloader(Download, name);
-    thDownaloader.detach();
+    std::thread thDownaloader(Download, std::ref(name));
+    //thDownaloader.detach();
     std::cout << R"MSG([Main] User started ...)MSG" << std::endl;
 
     if(thDownaloader.joinable())    
