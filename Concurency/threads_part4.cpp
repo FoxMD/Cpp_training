@@ -4,26 +4,34 @@
 #include <thread>
 #include <mutex>
 #include <Windows.h>
+#include <future>
 
-void Process()
+int Operation(int count)
 {
-    std::cout << std::this_thread::get_id() << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    using namespace std::chrono_literals;
+    int sum{};
+    for(int i = 0; i < count; ++i) {
+        std::cout << '.';
+        sum += i;
+        std::this_thread::sleep_for(300ms);
+    }
+    return sum;
 }
 
 int main()
 {
-    std::thread t1(Process);
-    auto id = t1.get_id();
-    std::cout << id <<std::endl;
-    // for linux: pthread_setname_np
-    HANDLE handle = t1.native_handle();
-    SetThreadDescription(handle, L"MyThread"); // L for widestring
-    // this handle was added in Windows 10 developers update
+    // execute as a task
+    std::future<int> result = std::async(Operation, 10);    // part of high lvl concurency, takes calloble
+    std::cout << "main continues" << std::endl;
+    // lauch policy:
+    // deferred - task is synchronous
+    // async - task is asynchronous - without lauch policy doesnt need always create a new thread
 
-    int cores = std::thread::hardware_concurrency();
-    std::cout << cores << std::endl;
-    t1.join();
-    system("pause");
+    // std::promise is a input channel 
+    // std::future is a output channel
+    if(result.valid()){
+        auto sum = result.get();
+        std::cout << sum << std::endl;
+    }
     return 0;
 }
