@@ -26,6 +26,8 @@ int main()
     std::cout << "main continues and prints asynchronously after 1s\n" << std::endl;
 
     if(result.valid()){
+        // wait_until takes timepoint
+        // std::chrono::system_clock::now + 1s -> wait for 1 secund from now 
         auto status = result.wait_for(std::chrono::seconds(1));
         switch(status)
         {
