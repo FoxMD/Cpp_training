@@ -24,13 +24,19 @@ int main()
     std::future<int> result = std::async(std::launch::async, Operation, 10);    // part of high lvl concurency, takes calloble
     std::this_thread::sleep_for(std::chrono::seconds(1));
     std::cout << "main continues and prints asynchronously after 1s\n" << std::endl;
-    // lauch policy:
-    // deferred - task is synchronous
-    // async - task is asynchronous - without lauch policy doesnt need always create a new thread
 
-    // std::promise is a input channel 
-    // std::future is a output channel
     if(result.valid()){
+        auto status = result.wait_for(std::chrono::seconds(1));
+        switch(status)
+        {
+            case std::future_status::deferred:  // you cannot wait for it
+                break;
+            case std::future_status::ready:     // you can get call get
+                break;
+            case std::future_status::timeout:   // if it is not ready (still running)
+                break;
+        }
+        // result.wait(); // waits until shareds state is ready but blocks main
         auto sum = result.get();
         std::cout << sum << std::endl;
     }
