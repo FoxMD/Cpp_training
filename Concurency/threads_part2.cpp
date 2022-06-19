@@ -31,7 +31,7 @@ int main()
 {
     String name;
     std::cout << R"MSG([Main] User started download)MSG" << std::endl;
-    std::thread thDownaloader(Download, std::ref(name));
+    std::thread thDownaloader(Download, std::ref(name));    // for const String &arg use std::cref()
     //thDownaloader.detach();
     std::cout << R"MSG([Main] User started ...)MSG" << std::endl;
 
