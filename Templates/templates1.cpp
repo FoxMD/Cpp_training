@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 
 template<typename T>
 T Add(T a, T b)

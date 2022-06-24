@@ -34,6 +34,7 @@
 #include <filesystem>
 #include <deque>
 #include <set>
+#include <list>
 
 void Emplace()
 {
