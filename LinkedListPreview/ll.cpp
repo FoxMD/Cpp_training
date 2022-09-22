@@ -62,6 +62,8 @@ Node::Node(/* args */)
 
 Node::~Node()
 {
+    this->value = 0;
+    this->next = nullptr;
     std::cout << "Destructed Node" << std::endl;
 }
 
