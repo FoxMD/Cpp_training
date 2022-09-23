@@ -57,14 +57,14 @@ Node *LinkedList::start()
 
 Node::Node(/* args */)
 {
-
+    std::cout << "Created node @" << this << std::endl;
 }
 
 Node::~Node()
 {
     this->value = 0;
     this->next = nullptr;
-    std::cout << "Destructed Node" << std::endl;
+    std::cout << "Destructed Node @" << this << std::endl;
 }
 
 
