@@ -8,3 +8,4 @@ https://github.com/umarmlone/beg_mod_cpp
 C++ 11/14/17
 
 TODO: Organize and make comments to each folder
+TODO: Add algorithms from AE and add basic algorithm ideas
