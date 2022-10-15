@@ -17,6 +17,10 @@ int main()
 
     //int8_t -> int64_t signed variation
 
-    
+    int32_t input = 0;
+    std::cout << "Enter a number" << std::endl;
+    std::cin >> input;
+    std::cout << "Your value: " << input << std::endl;
+
     return 0;
 }
