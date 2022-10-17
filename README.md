@@ -12,6 +12,7 @@ C++ 11/14/17
 ## Cpp basics 2:
 Jan Schaffranek
 https://www.udemy.com/course/der-komplettkurs-zur-modernen-c-programmierung
+https://github.com/franneck94/UdemyCpp
 
 Up to C++ 20
 ## Cpp algo:
