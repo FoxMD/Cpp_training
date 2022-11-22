@@ -3,3 +3,4 @@
 - Loops
 - Functions and headers
 - Arrays
+- Casting
