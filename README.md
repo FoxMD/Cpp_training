@@ -20,3 +20,6 @@ Most used algorithms and design patterns
 - Coming soon
 
 TODO: Add algorithms from AE and add basic algorithm ideas
+
+## ML learning
+- Coming soon
